@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: map-api
+  profiles:
+    active:
+      - dev
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+springdoc:
+  swagger-ui:
+    use-root-path: true
