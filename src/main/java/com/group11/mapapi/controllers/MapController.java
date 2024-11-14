@@ -2,6 +2,7 @@ package com.group11.mapapi.controllers;
 
 import com.group11.mapapi.api.Address;
 import com.group11.mapapi.api.Location;
+import com.group11.mapapi.api.LocationPair;
 import com.group11.mapapi.api.Road;
 import com.group11.mapapi.api.error.ProblemDetailFactory;
 import com.group11.mapapi.api.error.ValidationDetail;
@@ -57,6 +58,16 @@ public class MapController {
         @RequestBody @NotNull(message = "Location is required") @Valid Location location
     ) {
         return mapService.getRoadFromCoordinates(location);
+    }
+
+    @PostMapping("/distance")
+    @Operation(summary = "Get estimated driving distance between coordinates")
+    @ApiResponse(responseCode = "200", description = "Distance found")
+    @ApiResponse(responseCode = "400", description = "Invalid fields provided", content = {@Content(schema = @Schema(implementation = MinimalValidationDetail.class))})
+    double estimatedDrivingDistanceBetweenCoordinatesKM(
+        @RequestBody @NotNull(message = "Location pair is required") @Valid LocationPair locationPair
+    ) {
+        return mapService.getDistanceBetweenCoordinates(locationPair);
     }
 
 }

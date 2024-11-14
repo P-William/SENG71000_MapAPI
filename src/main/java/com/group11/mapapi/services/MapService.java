@@ -1,9 +1,6 @@
 package com.group11.mapapi.services;
 
-import com.group11.mapapi.api.Address;
-import com.group11.mapapi.api.Location;
-import com.group11.mapapi.api.Road;
-import com.group11.mapapi.api.RoadType;
+import com.group11.mapapi.api.*;
 import com.group11.mapapi.entities.AddressJpa;
 import com.group11.mapapi.entities.LocationJpa;
 import com.group11.mapapi.entities.RoadJpa;
@@ -11,6 +8,7 @@ import com.group11.mapapi.entities.repositories.AddressRepository;
 import com.group11.mapapi.entities.repositories.LocationRepository;
 import com.group11.mapapi.entities.repositories.RoadRepository;
 import com.group11.mapapi.utils.EnumUtil;
+import com.group11.mapapi.utils.MathUtil;
 import lombok.RequiredArgsConstructor;
 import net.datafaker.Faker;
 import org.springframework.stereotype.Service;
@@ -68,5 +66,13 @@ public class MapService {
             locationJpa,
             EnumUtil.randomEnum(RoadType.class)
         );
+    }
+
+    public double getDistanceBetweenCoordinates(LocationPair locationPair) {
+        final double DRIVING_DISTANCE_SCALING_FACTOR = 1.3;
+
+        double straitLineDistance = MathUtil.harversineDistance(locationPair.location1(), locationPair.location2());
+
+        return straitLineDistance * DRIVING_DISTANCE_SCALING_FACTOR;
     }
 }
