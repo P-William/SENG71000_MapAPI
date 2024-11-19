@@ -71,7 +71,7 @@ public class MapService {
     public double getDistanceBetweenCoordinates(LocationPair locationPair) {
         final double DRIVING_DISTANCE_SCALING_FACTOR = 1.3;
 
-        double straitLineDistance = MathUtil.harversineDistance(locationPair.location1(), locationPair.location2());
+        double straitLineDistance = MathUtil.harversineDistance(locationPair.locationOne(), locationPair.locationTwo());
 
         return straitLineDistance * DRIVING_DISTANCE_SCALING_FACTOR;
     }

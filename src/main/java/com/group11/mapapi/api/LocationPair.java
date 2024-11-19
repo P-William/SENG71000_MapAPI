@@ -11,9 +11,9 @@ import jakarta.validation.constraints.NotNull;
 public record LocationPair(
     @NotNull(message = "Location 1 is required")
     @Valid
-    Location location1,
+    Location locationOne,
 
     @NotNull(message = "Location 2 is required")
     @Valid
-    Location location2
+    Location locationTwo
 ) { }
